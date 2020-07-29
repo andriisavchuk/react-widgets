@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Accordion from "./components/Accordion";
+
+const items = [
+  {
+    id: 1,
+    title: 'Lorem 1',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad asperiores aspernatur autem dolorum ducimus ex hic impedit in ipsam ipsum maiores minus molestias neque odit, quas quia quo rem, sit. 1'
+  },
+  {
+    id: 2,
+    title: 'Lorem 2',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur autem dolorum ducimus ex hic impedit in ipsam ipsum maiores minus odit, quas quia quo rem, sit. 2'
+  },
+  {
+    id: 3,
+    title: 'Lorem 3',
+    content: 'Lorem text  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad asperiores aspernatur autem dolorum ducimus ex hic impedit in ipsam ipsum maiores minustias neque odit, quas quia quo rem. 3'
+  }
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App ui container">
+      <br/>
+      <Accordion items={items}/>
     </div>
   );
 }
