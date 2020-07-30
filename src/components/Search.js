@@ -3,7 +3,18 @@ import axios from 'axios';
 
 const Search = (props) => {
   const [searchValue, setSearchValue] = useState('java');
+  const [debouncedSearchValue, setDebouncedSearchValue] = useState(searchValue);
   const [searchResult, setSearchedResult] = useState([]);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedSearchValue(searchValue);
+    }, 700);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [searchValue]);
 
   useEffect(() => {
     const search = async () => {
@@ -13,35 +24,39 @@ const Search = (props) => {
           list: 'search',
           origin: '*',
           format: 'json',
-          srsearch: searchValue,
+          srsearch: debouncedSearchValue,
         },
       });
 
       setSearchedResult(data.query.search);
     };
 
-    if (searchValue && !searchResult.length) {
-      search();
-    } else {
-      const timeoutId = setTimeout(() => {
-        if (searchValue) {
-          search();
-        }
-      }, 700);
+    search();
+  }, [debouncedSearchValue]);
 
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }
-
-    // (async () => {
-    //   await axios.get('url')
-    // })();
-
-    // axios.get('url').then(response => {
-    //   console.log(response)
-    // })
-  }, [searchValue]);
+  // useEffect(() => {
+  //   if (searchValue && !searchResult.length) {
+  //     search();
+  //   } else {
+  //     const timeoutId = setTimeout(() => {
+  //       if (searchValue) {
+  //         search();
+  //       }
+  //     }, 700);
+  //
+  //     return () => {
+  //       clearTimeout(timeoutId);
+  //     };
+  //   }
+  //
+  //   // (async () => {
+  //   //   await axios.get('url')
+  //   // })();
+  //
+  //   // axios.get('url').then(response => {
+  //   //   console.log(response)
+  //   // })
+  // }, [searchValue, searchResult.length]);
 
   const renderedResults = searchResult.map((result) => {
     return (
