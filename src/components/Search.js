@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Search = (props) => {
+const Search = () => {
   const [searchValue, setSearchValue] = useState('java');
   const [debouncedSearchValue, setDebouncedSearchValue] = useState(searchValue);
   const [searchResult, setSearchedResult] = useState([]);
