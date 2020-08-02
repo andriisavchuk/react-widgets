@@ -3,7 +3,9 @@ import './App.css';
 import Accordion from './components/Accordion';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
-import Translate from "./components/Translate";
+import Translate from './components/Translate';
+import Route from './components/Route';
+import Header from "./components/Header";
 
 const items = [
   {
@@ -46,16 +48,24 @@ function App() {
 
   return (
     <div className="App ui container">
-      <br />
-      {/*<Accordion items={items}/>*/}
-      {/*<Search />*/}
-      {/*<Dropdown*/}
-      {/*  label="Select a Color"*/}
-      {/*  selected={selected}*/}
-      {/*  onSelectedChange={setSelected}*/}
-      {/*  options={options}*/}
-      {/*/>*/}
-      <Translate />
+      <Header />
+      <Route path="/">
+        <Accordion items={items} />
+      </Route>
+      <Route path="/dropdown">
+        <Dropdown
+          label="Select a color"
+          options={options}
+          selected={selected}
+          onSelectedChange={setSelected}
+        />
+      </Route>
+      <Route path="/wiki-search">
+        <Search />
+      </Route>
+      <Route path="/translate">
+        <Translate />
+      </Route>
     </div>
   );
 }
