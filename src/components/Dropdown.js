@@ -30,6 +30,7 @@ const Dropdown = ({label, options, selected, onSelectedChange }) => {
         key={option.value}
         className="item"
         onClick={() => onSelectedChange(option)}
+        style={{ color: option.value}}
       >
         {option.label}
       </div>
@@ -45,7 +46,7 @@ const Dropdown = ({label, options, selected, onSelectedChange }) => {
           onClick={() => setOpen(!open)}
         >
           <i className="dropdown icon" />
-          <div className="text">{selected.label}</div>
+          <div className="text" style={{ color: selected.value}}>{selected.label}</div>
           <div className={`menu ${open ? 'visible transition' : ''}`}>
             {renderedOptions}
           </div>
