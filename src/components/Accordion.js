@@ -11,10 +11,10 @@ const Accordion = ({ items }) => {
     const active = item.id === activeItemId ? 'active' : '';
 
     return (
-      <React.Fragment key={item.id}>
+      <div key={item.id}
+           onClick={() => onTitleClicked(item.id)}>
         <div
           className={`title ${active}`}
-          onClick={() => onTitleClicked(item.id)}
         >
           <i className="dropdown icon" />
           {item.title}
@@ -22,7 +22,7 @@ const Accordion = ({ items }) => {
         <div className={`content ${active}`}>
           <p>{item.content}</p>
         </div>
-      </React.Fragment>
+      </div>
     );
   });
 

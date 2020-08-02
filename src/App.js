@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Accordion from './components/Accordion';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
 import Translate from './components/Translate';
-import Route from './components/Route';
-import Header from "./components/Header";
+// import Route from './components/Route';
+import Header from './components/Header';
 
 const items = [
   {
@@ -47,25 +47,27 @@ function App() {
   const [selected, setSelected] = useState(options[0]);
 
   return (
-    <div className="App ui container">
-      <Header />
-      <Route path="/">
-        <Accordion items={items} />
-      </Route>
-      <Route path="/dropdown">
-        <Dropdown
-          label="Select a color"
-          options={options}
-          selected={selected}
-          onSelectedChange={setSelected}
-        />
-      </Route>
-      <Route path="/wiki-search">
-        <Search />
-      </Route>
-      <Route path="/translate">
-        <Translate />
-      </Route>
+    <div className="ui container">
+      <BrowserRouter>
+        <Header />
+        <Route exact path="/">
+          <Accordion items={items} />
+        </Route>
+        <Route path="/dropdown">
+          <Dropdown
+            label="Select a color"
+            options={options}
+            selected={selected}
+            onSelectedChange={setSelected}
+          />
+        </Route>
+        <Route path="/wiki-search">
+          <Search />
+        </Route>
+        <Route path="/translate">
+          <Translate />
+        </Route>
+      </BrowserRouter>
     </div>
   );
 }
